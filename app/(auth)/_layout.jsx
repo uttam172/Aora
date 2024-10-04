@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 
@@ -20,7 +20,7 @@ const AuthLayout = () => {
                 />
             </Stack>
 
-            <StatusBar/>
+            <StatusBar background="#161622" style="light" />
         </>
     )
 }

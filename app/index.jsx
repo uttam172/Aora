@@ -6,7 +6,7 @@ import 'react-native-url-polyfill/auto'
 
 import { images } from '../constants'
 import CustomButton from '../components/CustomButton'
-import { useGlobalContext } from '../context/globalProvider'
+import { useGlobalContext } from '../context/GlobalProvider'
 
 export default function App() {
 
@@ -45,7 +45,7 @@ export default function App() {
                     </View>
 
                     <Text className="text-sm font-pregular text-gray-100 mt-7 text-center">
-                        Where Creativity meets innovation: embark on a journey of limitless exploration with Aora
+                        Where creativity meets innovation: embark on a journey of limitless exploration with Aora
                     </Text>
 
                     <CustomButton 

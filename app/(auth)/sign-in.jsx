@@ -8,7 +8,7 @@ import { images } from '../../constants'
 import FormField from '../../components/FormField'
 import CustomButton from '../../components/CustomButton'
 
-import { signIn } from '../../lib/appwrite'
+import { getCurrentUser, signIn } from '../../lib/appwrite'
 
 const SignIn = () => {
 
@@ -17,20 +17,22 @@ const SignIn = () => {
         password: ''
     })
 
-    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [submitting, setSubmitting] = useState(false)
 
     const submit = async () => {
-        if(!form.email || !form.password){
+        if(form.email === "" || form.password === ""){
             Alert.alert('Error', 'Please fill in all the fields')
         }
 
-        setIsSubmitting(true)
+        setSubmitting(true)
 
         try {
             await signIn(form.email, form.password)
+            const result = await getCurrentUser()
+            setUser(result)
+            setIsLogged(true)
 
-            // set it to global state...
-
+            Alert.alert("Success", "User signed in successfully")
             router.replace('/home')
         } catch (error) {
             Alert.alert('Error', error.message)
@@ -49,7 +51,9 @@ const SignIn = () => {
                         className="w-[115px] h-[35px]"
                     />
 
-                    <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">Sign in to Aora</Text>
+                    <Text className="text-2xl text-white text-semibold mt-10 font-psemibold">
+                        Sign in to Aora
+                    </Text>
 
                     <FormField
                         title="Email"
@@ -69,7 +73,7 @@ const SignIn = () => {
                         title="Sign In"
                         handlePress={submit}
                         containerStyles="mt-7"
-                        isloading={isSubmitting}
+                        isloading={submitting}
                     />
 
                     <View className="justify-center pt-5 flex-row gap-2">
