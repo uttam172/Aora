@@ -1,5 +1,5 @@
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { icons } from '../constants'
 import { ResizeMode, Video } from 'expo-av'
 
@@ -30,7 +30,11 @@ const VideoCard = ({ video: { title, thumbnail, video, creator: { username, avat
                             className="text-xs text-gray-100 font-pregular"
                             numberOfLines={1}
                         >
-                            {username}
+                            {username ? (
+                                <Text>{username}</Text>
+                            ) : (
+                                <Text>No username available</Text>
+                            )}
                         </Text>
                     </View>
                 </View>
